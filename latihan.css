@@ -1,0 +1,23 @@
+:root{
+    --warnakesukaan: #4aca17;
+}
+
+
+h1 {
+    color: var(--warnakesukaan);
+}
+.outer {
+    border: 200px solid var(--warnakesukaan);
+    width: 300px;
+    display: contents;
+  }
+  
+  .outer > div {
+    border: 100px solid var(--warnakesukaan);
+    width: 100px;
+
+    transform: translatey(60px);
+  }
+
+
+
