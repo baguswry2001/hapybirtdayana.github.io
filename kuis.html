@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Quiz</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 100px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+}
+h3 {
+  text-align: center;
+}
+#question {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: calc(100% - 85px);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#feedback {
+  margin-top: 20px;
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 600px) {
+  .container {
+    margin: 50px auto;
+    padding: 10px;
+  }
+
+  input[type="text"] {
+    width: calc(100% - 80px);
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Selamat anda kena prank</h1>
+  <h3>Jawab untuk dapat hadiah</h3>
+
+  <div id="question"></div>
+  <input type="text" id="answer" placeholder="Masukan Jawaban">
+  <button onclick="checkAnswer()">Jawab</button>
+  <p id="feedback"></p>
+</div>
+<script src="script.js"></script>
+</body>
+<script>
+    function generateQuestion() {
+  var num1 = Math.floor(Math.random() * 10) + 1;
+  var num2 = Math.floor(Math.random() * 10) + 1;
+  var operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+  var question = num1 + " " + operator + " " + num2;
+  return { question: question, answer: eval(question) };
+}
+
+function checkAnswer() {
+  var userAnswer = parseInt(document.getElementById('answer').value);
+  var correctAnswer = generateQuestion().answer;
+  var feedbackElement = document.getElementById('feedback');
+
+  if (userAnswer === correctAnswer) {
+    feedbackElement.innerText = "Correct!";
+  } else {
+    feedbackElement.innerText = "Incorrect. Try again!";
+  }
+  
+  document.getElementById('answer').value = '';
+  document.getElementById('question').innerText = generateQuestion().question;
+}
+
+document.getElementById('question').innerText = generateQuestion().question;
+
+</script>
+</html>
